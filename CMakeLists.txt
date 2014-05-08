@@ -7,9 +7,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-permissive -pedantic -Wa
 # Standard install paths
 include(GNUInstallDirs)
 
-option(INSTALL_TESTS "Install the tests on make install" on)
-option(CLICK_MODE "Installs to a contained location" off)
-
 set(APP_NAME nativeapp)
 set(DESKTOP_FILE "${PROJECT_NAME}.desktop")
 set(ICON_FILE nativeapp64.png)
@@ -20,6 +17,7 @@ execute_process(
     OUTPUT_VARIABLE ARCH_TRIPLET
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
+
 set(CMAKE_INSTALL_PREFIX /)
 set(CMAKE_INSTALL_BINDIR /)
 set(DATA_DIR /)
