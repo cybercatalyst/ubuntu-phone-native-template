@@ -1,0 +1,23 @@
+Source: native-app
+Priority: extra
+Maintainer: Ubuntu App Cats <ubuntu-touch-coreapps@lists.launchpad.net>
+Build-Depends: cmake,
+               debhelper (>= 9),
+               qtbase5-dev,
+               qt5-default,
+               pkg-kde-tools,
+	       python3-all,
+Standards-Version: 3.9.5
+Section: misc
+Homepage: https://example.com
+Vcs-Bzr: https://example.com/trunk
+
+Package: native-app
+Section: misc
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+Description: Native App Example
+ Native App Example
+

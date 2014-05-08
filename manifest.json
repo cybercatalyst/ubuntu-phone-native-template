@@ -1,0 +1,15 @@
+{
+    "architecture": "all",
+    "description": "description of com.nativeapp",
+    "framework": "ubuntu-sdk-14.04",
+    "hooks": {
+        "com.nativeapp": {
+            "apparmor": "com.nativeapp.json",
+            "desktop": "com.nativeapp.desktop"
+        }
+    },
+    "maintainer": "",
+    "name": "com.company.nativeapp",
+    "title": "com.company.nativeapp",
+    "version": "0.1"
+}
