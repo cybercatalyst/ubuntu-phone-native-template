@@ -1,33 +1,33 @@
+# Link against Qt modules
 include(FindPkgConfig)
-
-# Qt modules
 find_package(Qt5Core)
 find_package(Qt5Widgets)
 
+# This is need so our application will find generated
+# source files.
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 # Application sources
-set(nativeapp_SRCS
+set(${APP_BINARY}_SRCS
     main.cpp
     mainwindow.cpp
 )
 
 # Application headers
-set(nativeapp_HDRS
+set(${APP_BINARY}_HDRS
     mainwindow.h
 )
 
 # Application ui-files
-qt5_wrap_ui(uic_HDRS
+qt5_wrap_ui(${APP_BINARY}_UIS
     mainwindow.ui
 )
 
 # Build executable
-add_executable(${APP_NAME}
-    ${nativeapp_SRCS}
-    ${nativeapp_HDRS}
-    ${uic_HDRS}
+add_executable(${APP_BINARY}
+    ${${APP_BINARY}_SRCS}
+    ${${APP_BINARY}_HDRS}
+    ${${APP_BINARY}_UIS}
 )
 
-# Link against Qt modules
-qt5_use_modules(${APP_NAME} Gui Widgets)
+qt5_use_modules(${APP_BINARY} Gui Widgets)
