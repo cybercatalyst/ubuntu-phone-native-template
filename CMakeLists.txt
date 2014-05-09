@@ -1,3 +1,24 @@
+#
+# Copyright: 2014 Jacob Dawid <jacob.dawid@cybercatalyst.net>
+#
+# This file is part of ubuntu-phone-native-template
+#
+# ubuntu-phone-native-template is free software: you can redistribute it
+# and/or modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation, either version 3 of the License,
+# or (at your option) any later version.
+#
+# ubuntu-phone-native-template is distributed in the hope that it will be
+# useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+# Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Authors: Jacob Dawid <jacob.dawid@cybercatalyst.net>
+#
+
 cmake_minimum_required(VERSION 2.8.9)
 
 # App configuration
@@ -40,14 +61,12 @@ execute_process(
 )
 
 # Application manifest
-set(MANIFEST_JSON manifest.json)
-configure_file(${MANIFEST_JSON}.in
-    ${CMAKE_CURRENT_BINARY_DIR}/${MANIFEST_JSON}
+configure_file(manifest.json.in
+    ${CMAKE_CURRENT_BINARY_DIR}/manifest.json
 )
 
-set(APPARMOR_JSON ${APP_DOMAIN}.${APP_VENDOR}.${APP_NAME}.json)
-configure_file(${APPARMOR_JSON}.in
-    ${CMAKE_CURRENT_BINARY_DIR}/${APPARMOR_JSON}
+configure_file(apparmor.json.in
+    ${CMAKE_CURRENT_BINARY_DIR}/${APP_DOMAIN}.${APP_VENDOR}.${APP_NAME}.json
 )
 
 install(FILES
@@ -59,7 +78,7 @@ install(FILES
 )
 
 # Desktop Link
-configure_file(${APP_DESKTOP}.in
+configure_file(desktop.in
     ${CMAKE_CURRENT_BINARY_DIR}/${APP_DESKTOP}
 )
 
