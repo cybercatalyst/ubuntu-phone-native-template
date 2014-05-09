@@ -53,21 +53,21 @@ project(${APP_TARGET} C CXX)
 # Standard install paths
 include(GNUInstallDirs)
 
-# ..
+configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
+configure_file(apparmor.json.in ${CMAKE_CURRENT_BINARY_DIR}/${APP_DOMAIN}.${APP_VENDOR}.${APP_NAME}.json)
+configure_file(desktop.in ${CMAKE_CURRENT_BINARY_DIR}/${APP_DESKTOP})
+configure_file(${APP_ICON_64} ${CMAKE_CURRENT_BINARY_DIR}/${APP_NAME}64.png)
+
+# Build package
 execute_process(
     COMMAND dpkg-architecture -qDEB_HOST_MULTIARCH
     OUTPUT_VARIABLE ARCH_TRIPLET
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
-configure_file(apparmor.json.in ${CMAKE_CURRENT_BINARY_DIR}/${APP_DOMAIN}.${APP_VENDOR}.${APP_NAME}.json)
-configure_file(desktop.in ${CMAKE_CURRENT_BINARY_DIR}/${APP_DESKTOP})
-configure_file(${APP_ICON_64} ${CMAKE_CURRENT_BINARY_DIR}/${APP_NAME}64.png)
-
 install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/${MANIFEST_JSON}
-    ${CMAKE_CURRENT_BINARY_DIR}/${APPARMOR_JSON}
+    ${CMAKE_CURRENT_BINARY_DIR}/manifest.json
+    ${CMAKE_CURRENT_BINARY_DIR}/${APP_DOMAIN}.${APP_VENDOR}.${APP_NAME}.json
     ${CMAKE_CURRENT_BINARY_DIR}/src/${APP_BINARY}
         DESTINATION
     ${CMAKE_INSTALL_PREFIX}
