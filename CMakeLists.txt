@@ -33,7 +33,7 @@ set(APP_DESCRIPTION "Example description")
 set(APP_TARGET ${APP_NAME})
 set(APP_BINARY ${APP_NAME})
 set(APP_PACKAGE ${APP_DOMAIN}.${APP_VENDOR}.${APP_NAME})
-set(APP_ICON nativeapp64.png)
+set(APP_ICON_64 assets/appicon64.png)
 set(APP_DESKTOP "${APP_PACKAGE}.desktop")
 
 # Cmake configuration
@@ -60,14 +60,10 @@ execute_process(
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-# Application manifest
-configure_file(manifest.json.in
-    ${CMAKE_CURRENT_BINARY_DIR}/manifest.json
-)
-
-configure_file(apparmor.json.in
-    ${CMAKE_CURRENT_BINARY_DIR}/${APP_DOMAIN}.${APP_VENDOR}.${APP_NAME}.json
-)
+configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
+configure_file(apparmor.json.in ${CMAKE_CURRENT_BINARY_DIR}/${APP_DOMAIN}.${APP_VENDOR}.${APP_NAME}.json)
+configure_file(desktop.in ${CMAKE_CURRENT_BINARY_DIR}/${APP_DESKTOP})
+configure_file(${APP_ICON_64} ${CMAKE_CURRENT_BINARY_DIR}/${APP_NAME}64.png)
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/${MANIFEST_JSON}
@@ -75,11 +71,6 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/src/${APP_BINARY}
         DESTINATION
     ${CMAKE_INSTALL_PREFIX}
-)
-
-# Desktop Link
-configure_file(desktop.in
-    ${CMAKE_CURRENT_BINARY_DIR}/${APP_DESKTOP}
 )
 
 install(FILES
