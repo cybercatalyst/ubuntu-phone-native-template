@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 2.8.9)
 
 # App configuration
+set(APP_ARCH all)
+set(APP_SDK "ubuntu-sdk-14.04")
 set(APP_DOMAIN net)
 set(APP_VENDOR cybercatalyst)
 set(APP_NAME nativeapp)
 set(APP_VERSION 1.0.0)
+set(APP_MAINTAINER "Example maintainer")
+set(APP_DESCRIPTION "Example description")
 set(APP_TARGET ${APP_NAME})
 set(APP_BINARY ${APP_NAME})
 set(APP_PACKAGE ${APP_DOMAIN}.${APP_VENDOR}.${APP_NAME})
@@ -36,12 +40,19 @@ execute_process(
 )
 
 # Application manifest
-configure_file(manifest.json
-    ${CMAKE_CURRENT_BINARY_DIR}/manifest.json
+set(MANIFEST_JSON manifest.json)
+configure_file(${MANIFEST_JSON}.in
+    ${CMAKE_CURRENT_BINARY_DIR}/${MANIFEST_JSON}
+)
+
+set(APPARMOR_JSON ${APP_DOMAIN}.${APP_VENDOR}.${APP_NAME}.json)
+configure_file(${APPARMOR_JSON}.in
+    ${CMAKE_CURRENT_BINARY_DIR}/${APPARMOR_JSON}
 )
 
 install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/manifest.json apparmor.json
+    ${CMAKE_CURRENT_BINARY_DIR}/${MANIFEST_JSON}
+    ${CMAKE_CURRENT_BINARY_DIR}/${APPARMOR_JSON}
     ${CMAKE_CURRENT_BINARY_DIR}/src/${APP_BINARY}
         DESTINATION
     ${CMAKE_INSTALL_PREFIX}

@@ -1,0 +1,15 @@
+{
+    "architecture": "@APP_ARCH@",
+    "description": "@APP_DESCRIPTION@",
+    "framework": "@APP_SDK@",
+    "hooks": {
+        "@APP_DOMAIN@.@APP_VENDOR@.@APP_NAME@": {
+            "apparmor": "@APP_DOMAIN@.@APP_VENDOR@.@APP_NAME@.json",
+            "desktop": "@APP_DOMAIN@.@APP_VENDOR@.@APP_NAME@.desktop"
+        }
+    },
+    "maintainer": "@APP_MAINTAINER@",
+    "name": "@APP_DOMAIN@.@APP_VENDOR@.@APP_NAME@",
+    "title": "@APP_DOMAIN@.@APP_VENDOR@.@APP_NAME@",
+    "version": "@APP_VERSION@"
+}
