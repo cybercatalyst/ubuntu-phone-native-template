@@ -1,9 +1,9 @@
 [Desktop Entry]
-Version=1.0
+Version=@APP_VERSION@
 Type=Application
-Terminal=false
+Terminal=@APP_DISPLAY_NAME@
 Exec=@EXEC@
-Icon=@ICON@
-Name=Native App
-X-Ubuntu-Touch=true
+Icon=@APP_NAME@64.png
+Name=@APP_DISPLAY_NAME@
+X-Ubuntu-Touch=false
 X-Ubuntu-Gettext-Domain=@PROJECT_NAME@
